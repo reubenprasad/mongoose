@@ -9,8 +9,23 @@
 <body>
     View Employees
     <table>
-        <tr>
-        </tr>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%for(var i in emp){%>
+            <tr>
+                <td><%=emp[i].eid%></td>
+                <td><%=emp[i].Name%></td>
+                <td><%=emp[i].Salary%></td>
+                <td><a href="/emp/update/<%=emp[i].eid%>">Edit</a></td>
+                <td><a href="">Delete</a></td>
+            </tr><%}%>
+        </tbody>
     </table>
 </body>
 </html>

@@ -26,14 +26,49 @@ router.post("/add",function(req,res){
     })
     });
 router.get("/vemp",function(req,res){
-    alert();
+    
     emp.find({},function(err,result){
         if(err) 
         throw err;
         else
-        {console.log(result);
-        res.render("vemp",{emp:result})
+        {
+          res.render("vemp",{emp:result})
         }
     })
     });
+    router.get("/update/:id",function(req,res){
+      
+        emp.find({eid:req.params.id},function(err,result){
+            if(err) 
+            throw err;
+            else
+            {console.log(result);
+
+               res.render("update",{emp:result})
+            
+            }
+        })
+        
+        });
+
+        router.post("/vemp",function(req,res){
+    
+            emp.find({},function(err,result){
+                if(err) 
+                throw err;
+                else
+                {
+                  res.render("vemp",{emp:result})
+                }
+            });
+            
+            var myquery = { eid: req.body.id};
+            var newvalues = { $set: { Name: req.body.update_n ,Salary:req.body.update_s} };
+            console.log(req.body.update_n);
+            emp.update(myquery, newvalues, function(err, res) {
+                if (err) throw err;
+                console.log("1 document updated");
+            });
+
+            });
 module.exports = router;
